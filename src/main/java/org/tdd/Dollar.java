@@ -22,6 +22,11 @@ public class Dollar implements Money  {
 
 
     @Override
+    public int ammount() {
+        return amount;
+    }
+
+    @Override
     public Dollar convert(Money money) {
         money.currency();
         return new Dollar(amount);
@@ -30,5 +35,10 @@ public class Dollar implements Money  {
     @Override
     public Currency currency() {
         return currency;
+    }
+
+    @Override
+    public Money add(Money firstCurrency) {
+        return new Dollar(firstCurrency.ammount()*firstCurrency.currency().getValueCHF());
     }
 }

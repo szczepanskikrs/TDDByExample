@@ -43,5 +43,7 @@ class FrankTest {
 
     @Test
     void shouldPassWhenAddingCorrectParametersIsCorrect() {
+        assertThat(testedFrank1.add(new Dollar(20))).isEqualTo(new Frank(45));
+
     }
 }

@@ -27,6 +27,11 @@ public class Frank implements Money{
     }
 
     @Override
+    public int ammount() {
+        return amount;
+    }
+
+    @Override
     public Dollar convert(Money money) {
         return null;
     }
@@ -35,4 +40,11 @@ public class Frank implements Money{
     public Currency currency() {
         return currency;
     }
+
+    @Override
+    public Money add(Money firstCurrency) {
+        return null;
+    }
+
+
 }

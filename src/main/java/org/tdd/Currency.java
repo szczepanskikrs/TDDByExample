@@ -1,18 +1,18 @@
 package org.tdd;
 
 public enum Currency {
-    USD(2),CHF(4.5);
-    private double conversionValue;
+    USD(2),CHF(1);
+    private int conversionValue;
 
-    Currency(double value) {
+    Currency(int value) {
         conversionValue = value;
     }
 
-    double getValueCHF(){
+    int getValueCHF(){
         return CHF.conversionValue;
     }
 
-    double getValueUSD(){
+    int getValueUSD(){
         return USD.conversionValue;
     }
 }
