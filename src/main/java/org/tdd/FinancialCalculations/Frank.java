@@ -1,16 +1,16 @@
-package org.tdd;
+package org.tdd.FinancialCalculations;
 
-public class Frank implements Money{
+public class Frank implements Money {
     private int amount;
-    private Currency currency=Currency.CHF;
+    private Currency currency = Currency.CHF;
     //private int currencyID = 1;
 
     public Frank(int amount) {
         this.amount = amount;
 
     }
-
-    public Frank times(int multiplier) {
+    @Override
+    public Money times(int multiplier) {
         return new Frank(amount * multiplier);
     }
 
@@ -22,17 +22,14 @@ public class Frank implements Money{
         return amount == frank.amount;
     }
 
-    Currency checkCurrency(){
-        return currency;
-    }
-
     @Override
-    public int ammount() {
+    public int amount() {
         return amount;
     }
 
+
     @Override
-    public Dollar convert(Money money) {
+    public Money convert(Money money) {
         return null;
     }
 
@@ -44,6 +41,11 @@ public class Frank implements Money{
     @Override
     public Money add(Money firstCurrency) {
         return new Frank(0);
+    }
+
+    @Override
+    public String currencyType() {
+        return currency.currencyMarking;
     }
 
 

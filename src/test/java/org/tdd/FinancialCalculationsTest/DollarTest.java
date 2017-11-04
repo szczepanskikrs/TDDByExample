@@ -1,14 +1,16 @@
-package org.tdd;
+package org.tdd.FinancialCalculationsTest;
 
 import junitparams.JUnitParamsRunner;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
+import org.tdd.FinancialCalculations.Dollar;
+import org.tdd.FinancialCalculations.Frank;
+import org.tdd.FinancialCalculations.Money;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 @RunWith(JUnitParamsRunner.class)
-
 class DollarTest {
 
     Dollar testedDollar1;
@@ -26,9 +28,9 @@ class DollarTest {
     }
 
     @Test
-    void shouldPassWhenObjectsAreCreatedInCorrectMannerWithProvidedParameters() {
-        Dollar testedDollar1 = new Dollar(5);
-        Dollar testedDollar2 = testedDollar1.times(2);
+    void shouldPassWhenObjectsAreCreatedCorrectlyWithProvidedParameters() {
+        Money testedDollar1 = new Dollar(5);
+        Money testedDollar2 = testedDollar1.times(2);
         assertThat(testedDollar2).isEqualTo(new Dollar(10));
         testedDollar2 = testedDollar1.times(5);
         assertThat(testedDollar2).isEqualTo(new Dollar(25));
@@ -46,12 +48,18 @@ class DollarTest {
     }
 
     @Test
-    void shouldPassWhenAddingOfCorrectParametersIsCorrect() {
+    void shouldPassWhenAddingOfDifferentCurrenciesIsCorrect() {
         assertThat(testedDollar1.add(new Frank(10))).isEqualTo(new Dollar(10));
     }
 
     @Test
     void shouldPassIfAddingTwoDollarsWillBringExpectedResult() {
-        assertThat(testedDollar1.add(testedDollar2)).isEqualTo(15);
+        assertThat(testedDollar1.add(testedDollar2)).isEqualTo(new Dollar(15));
+    }
+
+    @Test
+    void shouldPassIfCurrencyNameIsCorrect() {
+        assertThat(testedDollar1.currencyType()).isEqualTo("USD");
+        assertThat(testedDollar2.currencyType()).isNotEqualTo("WOLOLO");
     }
 }
