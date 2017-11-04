@@ -22,20 +22,21 @@ class DollarTest {
 
     @Test
     void shouldPassWhenCorrectValuesArePassedToMultiplication() {
-        assertThat(testedDollar1.times(2).amount).isEqualTo(10);
+        assertThat(testedDollar1.times(2)).isEqualTo(testedDollar2);
     }
 
     @Test
     void shouldPassWhenObjectsAreCreatedInCorrectMannerWithProvidedParameters() {
         Dollar testedDollar1 = new Dollar(5);
         Dollar testedDollar2 = testedDollar1.times(2);
-        assertThat(testedDollar2.amount).isEqualTo(10);
+        assertThat(testedDollar2).isEqualTo(new Dollar(10));
         testedDollar2 = testedDollar1.times(5);
-        assertThat(testedDollar2.amount).isEqualTo(25);
+        assertThat(testedDollar2).isEqualTo(new Dollar(25));
     }
 
     @Test
     void shouldPassWhenDollarsAreEqual() {
         assertThat(testedDollar1).isEqualTo(new Dollar(5));
+        assertThat(testedDollar1).isNotEqualTo(new Dollar(10));
     }
 }
