@@ -49,4 +49,9 @@ class DollarTest {
     void shouldPassWhenAddingOfCorrectParametersIsCorrect() {
         assertThat(testedDollar1.add(new Frank(10))).isEqualTo(new Dollar(10));
     }
+
+    @Test
+    void shouldPassIfAddingTwoDollarsWillBringExpectedResult() {
+        assertThat(testedDollar1.add(testedDollar2)).isEqualTo(15);
+    }
 }

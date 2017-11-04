@@ -43,7 +43,7 @@ public class Frank implements Money{
 
     @Override
     public Money add(Money firstCurrency) {
-        return null;
+        return new Frank(0);
     }
 
 

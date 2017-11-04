@@ -39,6 +39,6 @@ public class Dollar implements Money  {
 
     @Override
     public Money add(Money firstCurrency) {
-        return new Dollar(firstCurrency.ammount()*firstCurrency.currency().getValueCHF());
+        return new Dollar(this.amount+(firstCurrency.ammount()/firstCurrency.currency().getValueUSD()));
     }
 }
