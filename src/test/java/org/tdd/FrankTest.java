@@ -40,4 +40,8 @@ class FrankTest {
     void shouldPassWhenCurrencyOfFrankIsCorrect() {
         assertThat(testedFrank1.checkCurrency().getValueCHF()).isEqualTo(Currency.CHF.getValueCHF());
     }
+
+    @Test
+    void shouldPassWhenAddingCorrectParametersIsCorrect() {
+    }
 }
