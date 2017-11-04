@@ -31,7 +31,7 @@ class FrankTest {
     }
 
     @Test
-    void shouldPassWhenDollarsAreEqual() {
+    void shouldPassWhenFranksAreEqual() {
         assertThat(testedFrank1).isEqualTo(new Frank(5));
         assertThat(testedFrank1).isNotEqualTo(new Frank(10));
     }
