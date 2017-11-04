@@ -35,4 +35,9 @@ class FrankTest {
         assertThat(testedFrank1).isEqualTo(new Frank(5));
         assertThat(testedFrank1).isNotEqualTo(new Frank(10));
     }
+
+    @Test
+    void shouldPassWhenCurrencyOfFrankIsCorrect() {
+        assertThat(testedFrank1.checkCurrency().getValueCHF()).isEqualTo(Currency.CHF.getValueCHF());
+    }
 }

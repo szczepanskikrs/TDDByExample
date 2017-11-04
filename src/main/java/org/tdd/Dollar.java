@@ -1,9 +1,8 @@
 package org.tdd;
 
-public class Dollar implements Money {
+public class Dollar implements Money  {
     private int amount;
-    //private int currencyID = 0;
-
+    private Currency currency=Currency.USD;
     public Dollar(int amount) {
         this.amount = amount;
 
@@ -18,17 +17,18 @@ public class Dollar implements Money {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Dollar dollar = (Dollar) o;
-        //if (currencyID != dollar.currencyID) return false;
         return amount == dollar.amount;
     }
 
+
     @Override
-    public int amount() {
-        return amount;
+    public Dollar convert(Money money) {
+        money.currency();
+        return new Dollar(amount);
     }
 
-//    @Override
-//    public int currencyID() {
-//        return currencyID;
-//    }
+    @Override
+    public Currency currency() {
+        return currency;
+    }
 }
