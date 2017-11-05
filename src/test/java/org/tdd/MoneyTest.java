@@ -18,10 +18,10 @@ class MoneyTest {
 
     @BeforeEach
     public void setupTestEnvironment() {
-        testedDollar1 = Money.dollar(5,"USD");
-        testedDollar2 = Money.dollar(10,"USD");
-        testedFrank1 = Money.frank(5,"CHF");
-        testedFrank2 = Money.frank(10,"CHF");
+        testedDollar1 = Money.dollar(5, "USD");
+        testedDollar2 = Money.dollar(10, "USD");
+        testedFrank1 = Money.frank(5, "CHF");
+        testedFrank2 = Money.frank(10, "CHF");
     }
 
     @Test
@@ -31,21 +31,31 @@ class MoneyTest {
 
     @Test
     void shouldPassWhenObjectsAreCreatedInCorrectMannerWithProvidedParameters() {
-        Money testedDollar1 = Money.dollar(5,"USD");
+        Money testedDollar1 = Money.dollar(5, "USD");
         Money testedDollar2 = testedDollar1.times(2);
-        assertThat(testedDollar2).isEqualTo(Money.dollar(10,"USD"));
+        assertThat(testedDollar2).isEqualTo(Money.dollar(10, "USD"));
         testedDollar2 = testedDollar1.times(5);
-        assertThat(testedDollar2).isEqualTo(Money.dollar(25,"USD"));
+        assertThat(testedDollar2).isEqualTo(Money.dollar(25, "USD"));
     }
 
     @Test
     void shouldPassWhenDollarsAreEqual() {
-        assertThat(testedDollar1).isEqualTo(Money.dollar(5,"USD"));
-        assertThat(testedDollar1).isNotEqualTo(Money.dollar(10,"USD"));
+        assertThat(testedDollar1).isEqualTo(Money.dollar(5, "USD"));
+        assertThat(testedFrank1).isEqualTo(Money.frank(5, "CHF"));
+        assertThat(testedDollar1).isNotEqualTo(Money.dollar(10, "USD"));
     }
 
     @Test
     void shouldPassWhenCurrencyCheckIsOk() {
-        assertThat(Money.dollar(1,"USD").currency()).isEqualTo("USD");
+        assertThat(testedDollar1.currency).isEqualTo("USD");
+        assertThat(testedDollar2.currency()).isNotEqualTo("CHF");
+    }
+
+    @Test
+    void shouldPassWhenAddingResultIsEqualToExpectedResult() {
+        Expression sum = new Sum(testedDollar1,testedDollar2);
+        Bank bank = new Bank();
+        Money reduced = bank.reduce(sum, "USD");
+        assertThat(testedDollar2).isEqualTo(reduced);
     }
 }

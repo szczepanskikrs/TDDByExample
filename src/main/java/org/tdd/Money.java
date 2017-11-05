@@ -1,6 +1,6 @@
 package org.tdd;
 
-public class Money {
+public class Money implements Expression {
     protected int amount;
     protected String currency;
 
@@ -28,5 +28,9 @@ public class Money {
 
     public String currency() {
         return currency;
+    }
+
+    Expression add(Money toAdd) {
+        return new Money(amount+toAdd.amount,currency());
     }
 }
