@@ -16,7 +16,7 @@ class DollarTest {
     @BeforeEach
     public void setupTestEnvironment() {
         testedDollar1 = Money.dollar(5);
-        testedDollar2 = new Dollar(10);
+        testedDollar2 = Money.dollar(10);
     }
 
     @Test
@@ -26,17 +26,17 @@ class DollarTest {
 
     @Test
     void shouldPassWhenObjectsAreCreatedInCorrectMannerWithProvidedParameters() {
-        Dollar testedDollar1 = new Dollar(5);
-        Dollar testedDollar2 = testedDollar1.times(2);
-        assertThat(testedDollar2).isEqualTo(new Dollar(10));
+        Money testedDollar1 = Money.dollar(5);
+        Money testedDollar2 = testedDollar1.times(2);
+        assertThat(testedDollar2).isEqualTo(Money.dollar(10));
         testedDollar2 = testedDollar1.times(5);
-        assertThat(testedDollar2).isEqualTo(new Dollar(25));
+        assertThat(testedDollar2).isEqualTo(Money.dollar(25));
     }
 
     @Test
     void shouldPassWhenDollarsAreEqual() {
-        assertThat(testedDollar1).isEqualTo(new Dollar(5));
-        assertThat(testedDollar1).isNotEqualTo(new Dollar(10));
+        assertThat(testedDollar1).isEqualTo(Money.dollar(5));
+        assertThat(testedDollar1).isNotEqualTo(Money.dollar(10));
     }
 
     @Test
