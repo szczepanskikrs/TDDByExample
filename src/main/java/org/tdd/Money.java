@@ -11,5 +11,12 @@ public abstract class Money {
     public static Money dollar(int i) {
         return new Dollar(i);
     }
+
+    public static Money frank(int i) {
+        return new Frank(i);
+    }
+
     abstract Money times(int times);
+
+    public abstract String currency();
 }

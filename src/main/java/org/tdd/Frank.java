@@ -10,4 +10,9 @@ public class Frank extends Money {
     public Frank times(int multiplier) {
         return new Frank(amount * multiplier);
     }
+
+    @Override
+    public String currency() {
+        return "CHF";
+    }
 }

@@ -7,32 +7,35 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 class FrankTest {
 
-    Frank testedFrank1;
-    Frank testedFrank2;
+    Money testedFrank1;
+    Money testedFrank2;
 
     @BeforeEach
     public void setupTestEnvironment() {
-        testedFrank1 = new Frank(5);
-        testedFrank2 = new Frank(10);
+        testedFrank1 = Money.frank(5);
+        testedFrank2 = Money.frank(10);
     }
 
     @Test
     void shouldPassWhenCorrectValuesArePassedToMultiplication() {
-        assertThat(testedFrank1.times(2)).isEqualTo(testedFrank2);
+        assertThat(testedFrank1.times(2)).isEqualTo(Money.frank(10));
     }
 
     @Test
     void shouldPassWhenObjectsAreCreatedInCorrectMannerWithProvidedParameters() {
-        Frank testedFrank1 = new Frank(5);
-        Frank testedFrank2 = testedFrank1.times(2);
-        assertThat(testedFrank2).isEqualTo(new Frank(10));
+        assertThat(testedFrank2).isEqualTo(Money.frank(10));
         testedFrank2 = testedFrank1.times(5);
-        assertThat(testedFrank2).isEqualTo(new Frank(25));
+        assertThat(testedFrank2).isEqualTo(Money.frank(25));
     }
 
     @Test
     void shouldPassWhenFranksAreEqual() {
-        assertThat(testedFrank1).isEqualTo(new Frank(5));
-        assertThat(testedFrank1).isNotEqualTo(new Frank(10));
+        assertThat(testedFrank1).isEqualTo(Money.frank(5));
+        assertThat(testedFrank1).isNotEqualTo(Money.frank(10));
+    }
+
+    @Test
+    void shouldPassWhenCurrencyCheckIsOk() {
+        assertThat("CHF").isEqualTo(Money.frank(1).currency());
     }
 }

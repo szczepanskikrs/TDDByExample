@@ -43,4 +43,9 @@ class DollarTest {
     void shouldPassWhenDollarIsNotEqualToOtherTypeOfMoney() {
         assertThat(testedDollar1).isNotEqualTo(new Frank(5));
     }
+
+    @Test
+    void shouldPassWhenCurrencyCheckIsOk() {
+        assertThat("USD").isEqualTo(Money.dollar(1).currency());
+    }
 }
