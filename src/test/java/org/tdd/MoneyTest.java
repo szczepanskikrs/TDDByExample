@@ -8,15 +8,20 @@ import org.junit.runner.RunWith;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 @RunWith(JUnitParamsRunner.class)
-class DollarTest {
+class MoneyTest {
 
     Money testedDollar1;
     Money testedDollar2;
+    Money testedFrank1;
+    Money testedFrank2;
+
 
     @BeforeEach
     public void setupTestEnvironment() {
-        testedDollar1 = Money.dollar(5);
-        testedDollar2 = Money.dollar(10);
+        testedDollar1 = Money.dollar(5,"USD");
+        testedDollar2 = Money.dollar(10,"USD");
+        testedFrank1 = Money.frank(5,"CHF");
+        testedFrank2 = Money.frank(10,"CHF");
     }
 
     @Test
@@ -26,26 +31,21 @@ class DollarTest {
 
     @Test
     void shouldPassWhenObjectsAreCreatedInCorrectMannerWithProvidedParameters() {
-        Money testedDollar1 = Money.dollar(5);
+        Money testedDollar1 = Money.dollar(5,"USD");
         Money testedDollar2 = testedDollar1.times(2);
-        assertThat(testedDollar2).isEqualTo(Money.dollar(10));
+        assertThat(testedDollar2).isEqualTo(Money.dollar(10,"USD"));
         testedDollar2 = testedDollar1.times(5);
-        assertThat(testedDollar2).isEqualTo(Money.dollar(25));
+        assertThat(testedDollar2).isEqualTo(Money.dollar(25,"USD"));
     }
 
     @Test
     void shouldPassWhenDollarsAreEqual() {
-        assertThat(testedDollar1).isEqualTo(Money.dollar(5));
-        assertThat(testedDollar1).isNotEqualTo(Money.dollar(10));
-    }
-
-    @Test
-    void shouldPassWhenDollarIsNotEqualToOtherTypeOfMoney() {
-        assertThat(testedDollar1).isNotEqualTo(new Frank(5));
+        assertThat(testedDollar1).isEqualTo(Money.dollar(5,"USD"));
+        assertThat(testedDollar1).isNotEqualTo(Money.dollar(10,"USD"));
     }
 
     @Test
     void shouldPassWhenCurrencyCheckIsOk() {
-        assertThat("USD").isEqualTo(Money.dollar(1).currency());
+        assertThat(Money.dollar(1,"USD").currency()).isEqualTo("USD");
     }
 }

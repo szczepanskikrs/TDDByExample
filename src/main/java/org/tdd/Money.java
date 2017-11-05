@@ -1,22 +1,32 @@
 package org.tdd;
 
-public abstract class Money {
+public class Money {
     protected int amount;
+    protected String currency;
+
+    Money(int amount, String currency) {
+        this.amount = amount;
+        this.currency = currency;
+    }
 
     public boolean equals(Object o) {
         Money money = (Money) o;
-        return amount == money.amount && getClass().equals(money.getClass());
+        return amount == money.amount && currency().equals(money.currency);
     }
 
-    public static Money dollar(int i) {
-        return new Dollar(i);
+    public static Money dollar(int i, String currency) {
+        return new Money(i, currency);
     }
 
-    public static Money frank(int i) {
-        return new Frank(i);
+    public static Money frank(int i, String currency) {
+        return new Money(i, currency);
     }
 
-    abstract Money times(int times);
+    Money times(int times) {
+        return new Money(amount * times, currency);
+    }
 
-    public abstract String currency();
+    public String currency() {
+        return currency;
+    }
 }
