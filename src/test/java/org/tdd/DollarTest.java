@@ -8,7 +8,6 @@ import org.junit.runner.RunWith;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 @RunWith(JUnitParamsRunner.class)
-
 class DollarTest {
 
     Dollar testedDollar1;

@@ -1,8 +1,6 @@
 package org.tdd;
 
-public class Dollar implements Money {
-    private int amount;
-    //private int currencyID = 0;
+public class Dollar extends Money {
 
     public Dollar(int amount) {
         this.amount = amount;
@@ -15,20 +13,7 @@ public class Dollar implements Money {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Dollar dollar = (Dollar) o;
-        //if (currencyID != dollar.currencyID) return false;
-        return amount == dollar.amount;
+        Money money = (Money) o;
+        return amount == money.amount;
     }
-
-    @Override
-    public int amount() {
-        return amount;
-    }
-
-//    @Override
-//    public int currencyID() {
-//        return currencyID;
-//    }
 }
