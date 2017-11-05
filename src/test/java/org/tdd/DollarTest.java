@@ -10,12 +10,12 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 @RunWith(JUnitParamsRunner.class)
 class DollarTest {
 
-    Dollar testedDollar1;
-    Dollar testedDollar2;
+    Money testedDollar1;
+    Money testedDollar2;
 
     @BeforeEach
     public void setupTestEnvironment() {
-        testedDollar1 = new Dollar(5);
+        testedDollar1 = Money.dollar(5);
         testedDollar2 = new Dollar(10);
     }
 
