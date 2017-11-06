@@ -65,4 +65,15 @@ class MoneyTest {
         Money result = bank.reduce(Money.frank(2,"CHF"),"USD");
         assertThat(Money.dollar(1,"USD")).isEqualTo(result);
     }
+
+// Redundant
+// @Test
+//    void shouldPassWhenTestArraysAreEqual() {
+//        assertThat(new Object[]{"abc"}).isEqualTo(new Object[]{"abc"});
+//    }
+
+    @Test
+    void shouldPassWhenRatesAreEqual() {
+        assertThat(new Bank().rate("USD","USD"));
+    }
 }
