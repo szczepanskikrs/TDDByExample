@@ -7,7 +7,6 @@ import org.junit.runner.RunWith;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
-@RunWith(JUnitParamsRunner.class)
 class MoneyTest {
 
     Money testedDollar1;
@@ -57,5 +56,13 @@ class MoneyTest {
         Bank bank = new Bank();
         Money reduced = bank.reduce(sum, "USD");
         assertThat(testedDollar2).isEqualTo(reduced);
+    }
+
+    @Test
+    void shouldPassWhenReduceIsSuccessful() {
+        Bank bank = new Bank();
+        bank.addRate("CHF", "USD",2);
+        Money result = bank.reduce(Money.frank(2,"CHF"),"USD");
+        assertThat(Money.dollar(1,"USD")).isEqualTo(result);
     }
 }
