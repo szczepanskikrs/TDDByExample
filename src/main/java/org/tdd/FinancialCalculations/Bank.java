@@ -1,7 +1,11 @@
 package org.tdd.FinancialCalculations;
 
+import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.stream.Stream;
 
 public class Bank {
     private Map rates = new HashMap();
@@ -19,4 +23,5 @@ public class Bank {
         Integer rate = (Integer) rates.get(new Pair(convertFrom, convertTo));
         return rate.intValue();
     }
+
 }
