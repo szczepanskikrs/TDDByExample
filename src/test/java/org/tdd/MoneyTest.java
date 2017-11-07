@@ -2,16 +2,20 @@ package org.tdd;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.tdd.FinancialCalculations.Bank;
+import org.tdd.FinancialCalculations.Expression;
+import org.tdd.FinancialCalculations.Money;
+import org.tdd.FinancialCalculations.Sum;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 class MoneyTest {
 
-    Money testedDollar1;
-    Money testedDollar2;
-    Money testedFrank1;
-    Money testedFrank2;
-
+    private Money testedDollar1;
+    private Money testedDollar2;
+    private Money testedFrank1;
+    private Money testedFrank2;
+    private Bank bank;
 
     @BeforeEach
     public void setupTestEnvironment() {
@@ -19,6 +23,9 @@ class MoneyTest {
         testedDollar2 = Money.dollar(10);
         testedFrank1 = Money.frank(5);
         testedFrank2 = Money.frank(10);
+        bank = new Bank();
+        bank.addRate("CHF", "USD", 2);
+
     }
 
     @Test
@@ -51,15 +58,12 @@ class MoneyTest {
     @Test
     void shouldPassWhenAddingResultIsEqualToExpectedResult() {
         Expression sum = new Sum(testedDollar1, testedDollar2);
-        Bank bank = new Bank();
         Money reduced = bank.reduce(sum, "USD");
         assertThat(Money.dollar(15)).isEqualTo(reduced);
     }
 
     @Test
     void shouldPassWhenReduceIsSuccessful() {
-        Bank bank = new Bank();
-        bank.addRate("CHF", "USD", 2);
         Money result = bank.reduce(Money.frank(2), "USD");
         assertThat(Money.dollar(1)).isEqualTo(result);
     }
@@ -76,8 +80,6 @@ class MoneyTest {
 
     @Test
     void shouldPassWhenAdditionOfTwoDifferentMoneyTypesIsSuccessful() {
-        Bank bank = new Bank();
-        bank.addRate("CHF", "USD", 2);
         Money result = bank.reduce(testedDollar1.add(testedFrank2), "USD");
         assertThat(Money.dollar(10)).isEqualTo(result);
     }
@@ -86,8 +88,6 @@ class MoneyTest {
     void shouldPassWhenAdditionIsSuccessful() {
         Expression fiveBucks = Money.dollar(5);
         Expression tenFrancs = Money.frank(10);
-        Bank bank = new Bank();
-        bank.addRate("CHF", "USD", 2);
         Money result = bank.reduce(fiveBucks.plus(tenFrancs), "USD");
         assertThat(Money.dollar(10)).isEqualTo(result);
     }
@@ -96,8 +96,6 @@ class MoneyTest {
     void shouldPassWhenPlusExpressionIsSuccessful() {
         Expression fiveBucks = Money.dollar(5);
         Expression tenFranks = Money.frank(10);
-        Bank bank = new Bank();
-        bank.addRate("CHF", "USD", 2);
         Expression sum = new Sum(fiveBucks, tenFranks).plus(fiveBucks);
         Money result = bank.reduce(sum, "USD");
         assertThat(Money.dollar(15)).isEqualTo(result);
@@ -107,8 +105,7 @@ class MoneyTest {
     void shouldPassWhenTimesMethodOnSumIsSuccessful() {
         Expression fiveBucks = Money.dollar(5);
         Expression tenFranks = Money.frank(10);
-        Bank bank = new Bank();
-        bank.addRate("CHF", "USD", 2);
-        Expression sum = new Sum(fiveBucks, tenFranks).times(2);
+        Expression sum = new Sum(fiveBucks, tenFranks).times(3);
+        assertThat(sum.reduce(bank, "USD")).isEqualTo(Money.dollar(30));
     }
 }
