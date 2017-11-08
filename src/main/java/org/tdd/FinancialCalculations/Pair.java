@@ -1,4 +1,4 @@
-package org.tdd;
+package org.tdd.FinancialCalculations;
 
 public class Pair {
     private String convertFrom;

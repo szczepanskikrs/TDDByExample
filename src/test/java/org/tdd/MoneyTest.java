@@ -2,10 +2,9 @@ package org.tdd;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.tdd.FinancialCalculations.Bank;
-import org.tdd.FinancialCalculations.Expression;
-import org.tdd.FinancialCalculations.Money;
-import org.tdd.FinancialCalculations.Sum;
+import org.tdd.FinancialCalculations.*;
+
+import java.util.ArrayList;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
@@ -18,7 +17,7 @@ class MoneyTest {
     private Bank bank;
 
     @BeforeEach
-    public void setupTestEnvironment() {
+    private void setupTestEnvironment() {
         testedDollar1 = Money.dollar(5);
         testedDollar2 = Money.dollar(10);
         testedFrank1 = Money.frank(5);
@@ -107,5 +106,11 @@ class MoneyTest {
         Expression tenFranks = Money.frank(10);
         Expression sum = new Sum(fiveBucks, tenFranks).times(3);
         assertThat(sum.reduce(bank, "USD")).isEqualTo(Money.dollar(30));
+    }
+
+    @Test
+    void shouldPassWhenReturnedRateIsEqualToExpected() {
+        bank.addRate("USD", "CHF", 5);
+        assertThat(bank.rate("USD", "CHF")).isEqualTo(5);
     }
 }

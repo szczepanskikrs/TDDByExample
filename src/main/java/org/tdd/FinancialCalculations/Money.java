@@ -1,8 +1,8 @@
-package org.tdd;
+package org.tdd.FinancialCalculations;
 
 public class Money implements Expression {
     protected int amount;
-    protected String currency;
+    public String currency;
 
     Money(int amount, String currency) {
         this.amount = amount;
@@ -19,7 +19,7 @@ public class Money implements Expression {
     }
 
     public static Money frank(int i) {
-        return new Money(i,"CHF");
+        return new Money(i, "CHF");
     }
 
     public Expression times(int times) {
@@ -30,7 +30,7 @@ public class Money implements Expression {
         return currency;
     }
 
-    Expression add(Money toAdd) {
+    public Expression add(Money toAdd) {
         return new Sum(this, toAdd);
     }
 

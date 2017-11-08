@@ -1,4 +1,4 @@
-package org.tdd;
+package org.tdd.FinancialCalculations;
 
 public interface Expression {
     Money reduce(Bank bank, String reduceTo);

@@ -1,4 +1,4 @@
-package org.tdd;
+package org.tdd.FinancialCalculations;
 
 public class Sum implements Expression {
     Expression toAddTo;
@@ -6,14 +6,14 @@ public class Sum implements Expression {
     private Bank bank = new Bank();
 
     public Sum(Expression toAddTo, Expression toAdd) {
-        this.toAddTo=toAddTo;
-        this.toAdd=toAdd;
+        this.toAddTo = toAddTo;
+        this.toAdd = toAdd;
     }
 
-    public Money reduce(Bank bank, String reduceTo){
-        int amount = toAddTo.reduce(bank,reduceTo).amount+
-                     toAdd.reduce(bank,reduceTo).amount;
-        return new Money(amount,reduceTo);
+    public Money reduce(Bank bank, String reduceTo) {
+        int amount = toAddTo.reduce(bank, reduceTo).amount +
+                toAdd.reduce(bank, reduceTo).amount;
+        return new Money(amount, reduceTo);
     }
 
     @Override
@@ -23,7 +23,7 @@ public class Sum implements Expression {
 
     @Override
     public Expression times(int multiplier) {
-        return new Sum(toAddTo.times(multiplier),toAdd.times(multiplier));
+        return new Sum(toAddTo.times(multiplier), toAdd.times(multiplier));
     }
 
     public Sum(Money toAddTo, Money toAdd) {
